@@ -1,0 +1,28 @@
+{%  extends 'banner.html.twig' %}
+{% block content %}
+    <div id="page-content-div">
+        <h3>{{ page_heading_2 }}</h3>
+        <h4>{{ page_title }}</h4>
+
+        {% if telemetrymessage is not empty %}
+            <ul>
+
+                    <li>
+                        <ul>
+                            <li>Source MSISDN: {{ telemetrymessage['sourceMsisdn'] }}</li>
+                            <li>Destination MSISDN: {{ telemetrymessage['destinationMsisdn'] }}</li>
+                            <li>Received Time: {{ telemetrymessage['receivedTime'] }}</li>
+                            <li>Bearer: {{ telemetrymessage['bearer'] }}</li>
+                            <li>Message Ref: {{ telemetrymessage['messageRef'] }}</li>
+                            <li>Message: {{ telemetrymessage['message'] }}</li>
+                        </ul>
+                    </li>
+
+            </ul>
+        {% else %}
+            <p>No messages</p>
+        {% endif %}
+
+        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+    </div>
+{% endblock %}

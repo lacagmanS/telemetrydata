@@ -1,0 +1,29 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+    <div id="page-content-div">
+        <h3>{{ page_heading_2 }}</h3>
+        <form method="{{ method }}" action="{{ action }}">
+            <fieldset>
+                <legend>User details</legend>
+                <br>
+                <label for="username">Enter your name:</label>
+                <input id="username" name="username" type="text" value="{{ initial_input_box_value }}" size="30" maxlength="50">
+                <br><br>
+                <label for="userage">Enter your age:</label>
+                <input id="userage" name="userage" type="text" value="{{ initial_input_box_value }}" size="5" maxlength="5">
+                <br><br>
+                <label for="password">Enter your password:</label>
+                <input id="password" name="password" type="password" value="{{ initial_input_box_value }}" size="30" maxlength="50">
+                <br><br>
+                <label for="email">Enter your email:</label>
+                <input id="email" name="email" type="text" value="{{ initial_input_box_value }}" size="30" maxlength="50">
+                <br><br>
+                <label for="requirements">Dietary requirements:</label>
+                <textarea id="requirements" name="requirements" placeholder="Enter any special dietary requirements" rows="3" cols="50"></textarea>
+                <br><br>
+                <input type="submit" value="Create user account >>>">
+            </fieldset>
+        </form>
+        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+    </div>
+{% endblock %}

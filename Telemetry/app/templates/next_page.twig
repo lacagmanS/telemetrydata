@@ -1,0 +1,38 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+    <div id="page-content-div">
+        <h3>{{ page_heading_2 }}</h3>
+        <h4>{{ page_title }}</h4>
+
+        {% if telemetrymessage is not empty and telemetrymessage|length > 0 %}
+            <ul>
+                {% for message in telemetrymessage %}
+                    {% if message is not empty %}
+                        <li>
+                            <ul>
+
+                                {% if message['error'] is defined %}
+                                    <li>No circuitboard data</li>
+                                {% else %}
+
+                                    <li>Switch1: {{ message['switch1'] }}</li>
+                                    <li>Switch2: {{ message['switch2'] }}</li>
+                                    <li>Switch3: {{ message['switch3'] }}</li>
+                                    <li>Switch4: {{ message['switch4'] }}</li>
+                                    <li>Fan: {{ message['fan'] }}</li>
+                                    <li>Keypad: {{ message['keypad'] }}</li>
+                                    <li>Temperature: {{ message['temperature'] }}</li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+        {% else %}
+            <p>No messages</p>
+        {% endif %}
+        <p class="curr_page"><a href="{{ telemetryDetails }}">View Telemetry Details</a></p>
+        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+    </div>
+{% endblock %}
