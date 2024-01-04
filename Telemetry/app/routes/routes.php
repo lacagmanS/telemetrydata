@@ -12,6 +12,8 @@
 	*/
 
 require 'homepage.php';
+require 'loginUser.php';
+require 'loginStatus.php';
 require 'registeruser.php';
 require 'TelemetryAttempt.php';
 require 'TelemetryDetails.php';

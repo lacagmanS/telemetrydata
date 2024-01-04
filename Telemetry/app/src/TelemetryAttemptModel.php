@@ -91,6 +91,7 @@ class TelemetryAttemptModel
         $database_wrapper->setDatabaseConnectionSettings($database_connection_settings);
         $query_string = $sql_queries->storeMessageData();
         $query_parameters = [];
+        $query_string = $sql_queries->getHighestAutoId();
         foreach ($cleaned_parameters as $data) {
             $query_parameters[] = [
                 'message' => $data['message'],

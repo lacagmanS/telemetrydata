@@ -4,23 +4,17 @@
         <h3>{{ page_heading_2 }}</h3>
         <form method="{{ method }}" action="{{ action }}">
             <fieldset>
-                <legend>User details</legend>
+                <legend>Login</legend>
                 <br>
-                <label for="username">Enter your name:</label>
+                <label for="username">Username:</label>
                 <input id="username" name="username" type="text" value="{{ initial_input_box_value }}" size="30" maxlength="50">
                 <br><br>
-
-                <label for="password">Enter your password:</label>
+                <label for="password">Password:</label>
                 <input id="password" name="password" type="password" value="{{ initial_input_box_value }}" size="30" maxlength="50">
                 <br><br>
-                <label for="email">Enter your email:</label>
-                <input id="email" name="email" type="text" value="{{ initial_input_box_value }}" size="30" maxlength="50">
-                <br><br>
-
-                <input type="submit" value="Create user account >>>">
+                <input type="submit" value="Login >>>">
             </fieldset>
         </form>
         <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
-        <p class="curr_page"><a href="{{  login_page }}">Already have an account? Login</a></p>
     </div>
 {% endblock %}

@@ -31,26 +31,24 @@ class RegisterUserModel
         $cleaned_parameters = [];
 
         $tainted_username = $tainted_parameters['username'];
-        $tainted_userage = $tainted_parameters['userage'];
+
         $tainted_email = $tainted_parameters['email'];
-        $tainted_requirements = $tainted_parameters['requirements'];
+
 
         $cleaned_parameters['password'] = $tainted_parameters['password'];
         $cleaned_parameters['sanitised_username'] = $validator->sanitiseString($tainted_username);
-        $cleaned_parameters['validated_userage'] = $validator->validateInt($tainted_userage);
+
         $cleaned_parameters['sanitised_email'] = $validator->sanitiseEmail($tainted_email);
-        $cleaned_parameters['sanitised_requirements'] = $validator->sanitiseString($tainted_requirements);
-        return $cleaned_parameters;
+              return $cleaned_parameters;
     }
+
 
 
     function encrypt(object $libsodium_wrapper, array $cleaned_parameters): array
     {
         $encrypted = [];
         $encrypted['encrypted_username_and_nonce'] = $libsodium_wrapper->encrypt($cleaned_parameters['sanitised_username']);
-        $encrypted['encrypted_userage_and_nonce'] = $libsodium_wrapper->encrypt($cleaned_parameters['validated_userage']);
-        $encrypted['encrypted_email_and_nonce'] = $libsodium_wrapper->encrypt($cleaned_parameters['sanitised_email']);
-        $encrypted['encrypted_dietary_requirements_and_nonce'] = $libsodium_wrapper->encrypt($cleaned_parameters['sanitised_requirements']);
+      $encrypted['encrypted_email_and_nonce'] = $libsodium_wrapper->encrypt($cleaned_parameters['sanitised_email']);
 
         return $encrypted;
     }
@@ -59,9 +57,7 @@ class RegisterUserModel
     {
         $encoded = [];
         $encoded['encoded_username'] = $base64_wrapper->encode_base64($encrypted_data['encrypted_username_and_nonce']['nonce_and_encrypted_string']);
-        $encoded['encoded_userage'] = $base64_wrapper->encode_base64($encrypted_data['encrypted_userage_and_nonce']['nonce_and_encrypted_string']);
         $encoded['encoded_email'] = $base64_wrapper->encode_base64($encrypted_data['encrypted_email_and_nonce']['nonce_and_encrypted_string']);
-        $encoded['encoded_requirements'] = $base64_wrapper->encode_base64($encrypted_data['encrypted_dietary_requirements_and_nonce']['nonce_and_encrypted_string']);
         return $encoded;
     }
 
@@ -100,10 +96,7 @@ class RegisterUserModel
             $encoded['encoded_email']
         );
 
-        $decrypted_values['dietary_requirements'] = $libsodium_wrapper->decrypt(
-            $base64_wrapper,
-            $encoded['encoded_requirements']
-        );
+
 
         return $decrypted_values;
     }

@@ -1,0 +1,16 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+    <div id="page-content-div">
+        <h3>{{ page_heading_2 }}</h3>
+
+        <h4>Storage results:</h4>
+        <p>{{ storage_result }}</p>
+        {% if landing_page2 is defined %}
+        <p class="curr_page"><a href="{{ landing_page2 }}">go to telemetry daya</a></p>
+            {% else %}
+                <p class="curr_page"><a href="{{ login_page }}">Login Again</a></p>
+
+        {% endif %}
+        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+    </div>
+{% endblock %}

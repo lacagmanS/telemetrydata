@@ -117,6 +117,24 @@ return function (Container $container, App $app) {
     $container->set('TelemetryDetailsView', function () {
         return new Telemetry\TelemetryDetailsView();
     });
+    $container->set('LoginUserController', function () {
+        return new Telemetry\LoginUserController();
+    });
+    $container->set('LoginUserView', function () {
+        return new Telemetry\LoginUserView();
+    });
+    $container->set('LoginStatusController', function () {
+        return new Telemetry\LoginStatusController();
+    });
+    $container->set('LoginStatusModel', function () {
+        return new Telemetry\LoginStatusModel();
+    });
+    $container->set('LoginStatusView', function () {
+        return new Telemetry\LoginStatusView();
+    });
+
+
+
 
 
 };

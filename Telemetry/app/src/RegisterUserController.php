@@ -33,10 +33,10 @@ class RegisterUserController
 
         $cleaned_parameters = $registeruser_model->cleanupParameters($validator, $tainted_parameters);
 
-        $results['encrypted'] = $registeruser_model->encrypt($libsodium_wrapper, $cleaned_parameters);
-        $results['encoded'] = $registeruser_model->encode($base64_wrapper, $results['encrypted'] );
+//        $results['encrypted'] = $registeruser_model->encrypt($libsodium_wrapper, $cleaned_parameters);
+//        $results['encoded'] = $registeruser_model->encode($base64_wrapper, $results['encrypted'] );
         $results['hashed_password'] = $registeruser_model->hash_password($bcrypt_wrapper, $cleaned_parameters['password'], $settings);
-        $results['decrypted'] = $registeruser_model->decrypt($libsodium_wrapper, $base64_wrapper, $results['encoded']);
+//        $results['decrypted'] = $registeruser_model->decrypt($libsodium_wrapper, $base64_wrapper, $results['encoded']);
 
         $storage_result = $registeruser_model->storeUserDetails($database_connection_settings, $doctrine_queries, $cleaned_parameters, $results['hashed_password']);
 

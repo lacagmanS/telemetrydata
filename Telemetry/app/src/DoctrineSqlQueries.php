@@ -15,35 +15,39 @@ namespace Telemetry;
 
 class DoctrineSqlQueries
 {
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
-    public function __destruct(){}
+    public function __destruct()
+    {
+    }
 
     public static function queryStoreUserData(
         object $queryBuilder,
-        array $cleaned_parameters,
+        array  $cleaned_parameters,
         string $hashed_password
     ): array
     {
         $store_result = [];
         $username = $cleaned_parameters['sanitised_username'];
-        $userage = $cleaned_parameters['validated_userage'];
+
         $email = $cleaned_parameters['sanitised_email'];
-        $dietary_requirements = $cleaned_parameters['sanitised_requirements'];
+
 
         $queryBuilder = $queryBuilder->insert('user_data')
             ->values([
                 'user_name' => ':name',
-                'user_age' => ':age',
+//                'user_age' => ':age',
                 'email' => ':email',
-                'dietary' => ':diet',
+//                'dietary' => ':diet',
                 'password' => ':password',
             ])
             ->setParameters([
                 'name' => $username,
-                'age' => $userage,
+//                'age' => $userage,
                 'email' => $email,
-                'diet' => $dietary_requirements,
+//                'diet' => $dietary_requirements,
                 'password' => $hashed_password
             ]);
 
@@ -55,7 +59,7 @@ class DoctrineSqlQueries
 
     public static function queryRetrieveUserData(
         object $queryBuilder,
-        array $cleaned_parameters
+        array  $cleaned_parameters
     ): array
     {
         $result = [];
@@ -64,11 +68,43 @@ class DoctrineSqlQueries
         $queryBuilder
             ->select('password', 'email')
             ->from('user_data', 'u')
-            ->where('user_name = ' .  $queryBuilder->createNamedParameter($username));
+            ->where('user_name = ' . $queryBuilder->createNamedParameter($username));
 
         $query = $queryBuilder->execute();
         $result = $query->fetchAll();
 
         return $result;
     }
+
+
+    public static function queryAuthenticateUser(
+        object $queryBuilder,
+        array  $cleaned_parameters,
+               $bcryptWrapper
+    ): string
+    {
+        $storedPassword = true;
+        $username = $cleaned_parameters['sanitised_username'];
+
+        $queryBuilder
+            ->select('password')
+            ->from('user_data', 'u')
+            ->where('user_name = ' . $queryBuilder->createNamedParameter($username));
+
+        $storedPassword = $queryBuilder->execute()->fetchOne();
+
+        if ($storedPassword === false) {
+            return 'Authentication Failed';
+        }
+
+        $storedUnhashedPassword = $bcryptWrapper->authenticatePassword($cleaned_parameters['password'], $storedPassword);
+
+        // Convert boolean to string
+        if ($storedUnhashedPassword) {
+            return 'Username and Password Correct';
+        } else {
+            return 'Incorrect Password';
+        }
+    }
+
 }

@@ -20,6 +20,7 @@ class HomePageView
             [
                 'css_path' => $css_path,
                 'landing_page' => $landing_page,
+                'login_page'=> 'loginUser',
                 'action' => 'registeruser',
                 'method' => 'post',
                 'initial_input_box_value' => null,

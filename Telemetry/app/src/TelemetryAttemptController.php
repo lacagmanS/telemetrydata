@@ -42,7 +42,7 @@ if($cleanedmessages !=null) {
 
 }
 else{
-    $processed_messages[]=null;
+    $processed_messages=null;
 }
 
         $TelemetryAttemptView->createTelemetryAttemptView($view, $response, $settings, $processed_messages);
