@@ -2,65 +2,71 @@
 
 {% block content %}
     {% if method == 'post' %}
-    <div id="page-content-div">
-        <h3>{{ page_heading_2 }}</h3>
-        <h4>{{ page_title }}</h4>
+        <div id="page-content-div">
+            <h3>{{ page_heading_2 }}</h3>
+            <h4>{{ page_title }}</h4>
 
-        <form action="{{ action }}" method={{ method }}>
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" id="phone_number" name="phone_number" required><br><br>
-            <label for="message">Message:</label>
-            <input type="text" id="message" name="message" required><br><br>
+            <form action="{{ action }}" method={{ method }}>
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" id="phone_number" name="phone_number" required><br><br>
+                <label for="message">Message:</label>
+                <input type="text" id="message" name="message" required><br><br>
 
-            <label>Switch 1:</label>
-            <label for="switch1_on">On</label>
-            <input type="radio" id="switch1_on" name="switch1" value="on">
-            <label for="switch1_off">Off</label>
-            <input type="radio" id="switch1_off" name="switch1" value="off"><br><br>
+                <label>Switch 1:</label>
+                <label for="switch1_on">On</label>
+                <input type="radio" id="switch1_on" name="switch1" value="on" required>
+                <label for="switch1_off">Off</label>
+                <input type="radio" id="switch1_off" name="switch1" value="off" required><br><br>
 
-            <label>Switch 2:</label>
-            <label for="switch2_on">On</label>
-            <input type="radio" id="switch2_on" name="switch2" value="on">
-            <label for="switch2_off">Off</label>
-            <input type="radio" id="switch2_off" name="switch2" value="off"><br><br>
+                <label>Switch 2:</label>
+                <label for="switch2_on">On</label>
+                <input type="radio" id="switch2_on" name="switch2" value="on" required>
+                <label for="switch2_off">Off</label>
+                <input type="radio" id="switch2_off" name="switch2" value="off" required><br><br>
 
-            <label>Switch 3:</label>
-            <label for="switch3_on">On</label>
-            <input type="radio" id="switch3_on" name="switch3" value="on">
-            <label for="switch3_off">Off</label>
-            <input type="radio" id="switch3_off" name="switch3" value="off"><br><br>
+                <label>Switch 3:</label>
+                <label for="switch3_on">On</label>
+                <input type="radio" id="switch3_on" name="switch3" value="on" required>
+                <label for="switch3_off">Off</label>
+                <input type="radio" id="switch3_off" name="switch3" value="off" required><br><br>
 
-            <label>Switch 4:</label>
-            <label for="switch4_on">On</label>
-            <input type="radio" id="switch4_on" name="switch4" value="on">
-            <label for="switch4_off">Off</label>
-            <input type="radio" id="switch4_off" name="switch4" value="off"><br><br>
+                <label>Switch 4:</label>
+                <label for="switch4_on">On</label>
+                <input type="radio" id="switch4_on" name="switch4" value="on" required>
+                <label for="switch4_off">Off</label>
+                <input type="radio" id="switch4_off" name="switch4" value="off" required><br><br>
 
-            <label>Fan:</label>
-            <label for="fan_forward">Forward</label>
-            <input type="radio" id="fan_forward" name="fan" value="forward">
-            <label for="fan_reverse">Reverse</label>
-            <input type="radio" id="fan_reverse" name="fan" value="reverse"><br><br>
+                <label>Fan:</label>
+                <label for="fan_forward">Forward</label>
+                <input type="radio" id="fan_forward" name="fan" value="forward" required>
+                <label for="fan_reverse">Reverse</label>
+                <input type="radio" id="fan_reverse" name="fan" value="reverse"><br><br>
 
-            <label for="keypad">Keypad:</label>
-            <input type="number" id="keypad" name="keypad"><br><br>
+                <label for="keypad">Keypad:</label>
+                <input type="number" id="keypad" name="keypad"><br><br>
 
-            <label for="temperature">Temperature:</label>
-            <input type="number" id="temperature" name="temperature"><br><br>
+                <label for="temperature">Temperature:</label>
+                <input type="number" id="temperature" name="temperature" required><br><br>
 
-            <input type="submit" value="Send Message">
-        </form>
+                <input type="submit" value="Send Message">
+            </form>
 
-        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
-    </div>
+            <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+        </div>
     {% else %}
 
         <div id="page-content-div">
             <h3>{{ page_heading_2 }}</h3>
             <h4>{{ page_title }}</h4>
-
-            <p>sent message: {{ sent_message }}</p>
-
+            {% if sent_message is defined %}
+                <p>sent message: {{ sent_message }}</p>
+            {% endif %}
+            {% if error_message is defined %}
+                <div class="error-message">
+                  <p> wrong Phone Number causing error:  {{ error_message }}</p>
+                    <p>Please use a valid Phone Number</p>
+                </div>
+            {% endif %}
             <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
         </div>
 

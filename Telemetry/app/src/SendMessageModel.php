@@ -78,6 +78,32 @@ class SendMessageModel
 
 
     }
+    public function buildMessageString( $cleaned_parameters)
+    {
+        $messageString = '';
+
+
+
+
+        $switchs = ['switch1','switch2', 'switch3', 'switch4'];
+        foreach ($switchs as $switch) {
+            if ($cleaned_parameters[$switch] == 'on') {
+                $messageString .= $switch . '=on, ';
+            } else {
+                $messageString .= $switch . '=off, ';
+            }
+        }
+        if ($cleaned_parameters['fan']){
+            $messageString .= 'fan=reverse, ';
+        }
+        else{
+            $messageString .= 'fan=forward, ';
+        }
+        $messageString .= 'keypad=' . $cleaned_parameters['keypad'] . ' ';
+        $messageString .= 'temperature=' . $cleaned_parameters['temperature'];
+
+        return $messageString;
+    }
 
 
 }

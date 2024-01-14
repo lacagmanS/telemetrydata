@@ -61,8 +61,32 @@ class SendMessageView
                         'page_heading_1' => $application_name,
                         'page_heading_2' => 'Message wasnt sent',
 
+
                     ]);
             }
+        }
+    public function createSendMessagePageView3($view,  $settings, $response, $errorMessage): void
+    {
+
+        $landing_page = $settings['landing_page'];
+        $application_name = $settings['application_name'];
+        $css_path = $settings['css_path'];
+
+            $view->render(
+                $response,
+                'send_message.html.twig',
+                [
+                    'css_path' => $css_path,
+                    'landing_page' => $landing_page,
+                    'method' => 'get',
+                    'page_title' => $application_name,
+                    'page_heading_1' => $application_name,
+                    'page_heading_2' => 'Message wasnt sent',
+                    'error_message' => $errorMessage,
+
+
+
+                ]);
         }
 
 }

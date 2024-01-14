@@ -29,17 +29,22 @@ class SendMessageController
         $tainted_parameters = $request->getParsedBody();
         $messagesent = false;
         $cleaned_parameters = $sendMessageModel->cleanupParameters($validator, $tainted_parameters);
-        if ($cleaned_parameters['phoneNumber'] == '') {
-            $error = "Invalid phone number given";
-            $sendMessageView->createSendMessagePageView2($view, $settings, $response, $error, $messagesent);
+        var_dump($cleaned_parameters['switch1']);
+        try {
+            if ($cleaned_parameters['phoneNumber'] == '') {
+                throw new \Exception("Invalid phone number given");
+            }
+            $messagecontent =$sendMessageModel->buildMessageString($cleaned_parameters);
+            var_dump($messagecontent);
+            $messagesent = $sendMessageModel->sendMessage($messagecontent, $cleaned_parameters['phoneNumber'], $soap_wrapper);
+            var_dump($messagesent);
+
+            $sendMessageView->createSendMessagePageView2($view, $settings, $response, $messagecontent, $messagesent);
+        } catch (\Exception $e) {
+           var_dump($messagesent);
+            $errorMessage = $e->getMessage();
+            $sendMessageView->createSendMessagePageView3($view, $settings, $response, $errorMessage );
         }
 
-        $messagesent = $sendMessageModel->sendMessage($cleaned_parameters['message'], $cleaned_parameters['phoneNumber'], $soap_wrapper);
-        var_dump($messagesent);
-
-
-        $sendMessageView->createSendMessagePageView2($view, $settings, $response, $cleaned_parameters['message'],$messagesent);
     }
-
-
 }
