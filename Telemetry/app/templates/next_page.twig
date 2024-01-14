@@ -40,5 +40,61 @@
         {% endif %}
 
         <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+        <p class="curr_page"><a href="{{ SendMessage }}">Send Message</a></p>
     </div>
 {% endblock %}
+{#//{% extends 'banner.html.twig' %}#}
+{#{% block content %}#}
+{#    <div id="page-content-div" style="background-color: #f4f4f4; padding: 20px;">#}
+
+{#        <h3 style="text-align: center; color: #333;">{{ page_heading_2 }}</h3>#}
+{#        <h4 style="text-align: center; color: #555;">{{ page_title }}</h4>#}
+
+{#        {% if telemetrymessage is not empty %}#}
+{#            <form action="#" method="post" style="margin-top: 20px;">#}
+{#                <table class="telemetry-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">#}
+{#                    <thead style="background-color: #3498db; color: #fff;">#}
+{#                    <tr>#}
+{#                        <th style="padding: 10px;">Switch 1</th>#}
+{#                        <th style="padding: 10px;">Switch 2</th>#}
+{#                        <th style="padding: 10px;">Switch 3</th>#}
+{#                        <th style="padding: 10px;">Switch 4</th>#}
+{#                        <th style="padding: 10px;">Fan</th>#}
+{#                        <th style="padding: 10px;">Keypad</th>#}
+{#                        <th style="padding: 10px;">Temperature</th>#}
+{#                        <th style="padding: 10px;">Image</th>#}
+{#                    </tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    {% for message in telemetrymessage %}#}
+{#                        {% if message is not empty %}#}
+{#                            <tr>#}
+{#                                {% if message['error'] is defined %}#}
+{#                                    <td colspan="8" style="padding: 10px; text-align: center;">No circuitboard data</td>#}
+{#                                {% else %}#}
+{#                                    <td style="padding: 10px;">{{ message['switch1'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['switch2'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['switch3'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['switch4'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['fan'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['keypad'] }}</td>#}
+{#                                    <td style="padding: 10px;">{{ message['temperature'] }}</td>#}
+{#                                    <td style="padding: 10px;">No image available</td>#}
+{#                                {% endif %}#}
+{#                            </tr>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                    </tbody>#}
+{#                </table>#}
+
+{#                <p style="text-align: center; margin-bottom: 20px;"><a href="{{ telemetryDetails }}" style="text-decoration: none; color: #3498db; font-weight: bold;">View Telemetry Details</a></p>#}
+{#                <!-- Add any form-related elements or buttons here -->#}
+
+{#            </form>#}
+{#        {% else %}#}
+{#            <p style="text-align: center; color: #555; font-size: 18px;">No messages</p>#}
+{#        {% endif %}#}
+
+{#        <p class="curr_page" style="text-align: center;"><a href="{{ landing_page }}" style="text-decoration: none; color: #3498db; font-weight: bold;">Home</a></p>#}
+{#    </div>#}
+{#{% endblock %}#}

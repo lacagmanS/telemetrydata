@@ -132,8 +132,21 @@ return function (Container $container, App $app) {
     $container->set('LoginStatusView', function () {
         return new Telemetry\LoginStatusView();
     });
-
-
+    $container->set('logger', function () {
+        $logger = new Logger('monologger');
+        $filehandler = new StreamHandler(__DIR__.'/logs/telemetry.log');
+        $logger->pushHandler($filehandler);
+        return $logger;
+    });
+    $container->set('SendMessageController', function () {
+        return new Telemetry\SendMessageController();
+    });
+    $container->set('SendMessageView', function () {
+        return new Telemetry\SendMessageView();
+    });
+    $container->set('SendMessageModel', function () {
+        return new Telemetry\SendMessageModel();
+    });
 
 
 

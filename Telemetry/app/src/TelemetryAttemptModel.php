@@ -39,6 +39,7 @@ class TelemetryAttemptModel
 
     }
 
+
     public function parseMessage($telemetry_message): array
     {
         $parsedMessages = [];

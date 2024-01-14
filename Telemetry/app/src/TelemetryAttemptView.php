@@ -35,6 +35,7 @@ class TelemetryAttemptView
                     'page_heading_2' => 'Welcome',
                     'telemetrymessage' => $telemetrymessage,
                     'telemetryDetails' => 'TelemetryDetails',
+                    'SendMessage' => 'SendMessage',
 
 
                 ]);
@@ -48,10 +49,10 @@ class TelemetryAttemptView
                     'css_path' => $css_path,
                     'page_title' => $application_name,
                     'page_heading_1' => 'Here is your Telemetry Data',
-                    'page_heading_2' => 'Welcome',
+                    'page_heading_2' => 'Welcome, no messages right now',
                     'telemetrymessage' => $telemetrymessage,
 
-
+                    'SendMessage' => 'SendMessage',
 
                 ]);
         }

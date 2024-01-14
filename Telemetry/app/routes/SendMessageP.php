@@ -5,17 +5,15 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 //use Doctrine\DBAL\DriverManager;
 
-$app->get(
-    '/TelemetryAttempt',
+$app->post(
+    '/SendMessageP',
     function(Request $request, Response $response)
     use ($app)
     {
         $container = $app->getContainer();
 
-        $TelemetryAttemptController = $container->get('TelemetryAttemptController');
-        $TelemetryAttemptController->createHtmlOutput($container, $request, $response);
+        $loginstatus_controller = $container->get('SendMessageController');
+        $loginstatus_controller->createHtmlOutput2($container, $request, $response);
         return $response;
     }
 );
-
-

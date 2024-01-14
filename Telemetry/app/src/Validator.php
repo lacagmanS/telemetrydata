@@ -14,7 +14,7 @@ class Validator
 
     public function validateInt(int $age_to_validate): int
     {
-        $validated_age = false;
+        $validated_int = false;
 
         $options = [
             'options' => [
@@ -24,10 +24,10 @@ class Validator
             ]
         ];
 
-        $sanitised_age = filter_var($age_to_validate, FILTER_SANITIZE_NUMBER_INT);
-        $validated_age = filter_var($sanitised_age, FILTER_VALIDATE_INT, $options);
+        $sanitised_int = filter_var($age_to_validate, FILTER_SANITIZE_NUMBER_INT);
+        $validated_int = filter_var($sanitised_int, FILTER_VALIDATE_INT, $options);
 
-        return $validated_age;
+        return $validated_int;
     }
 
     public function sanitiseString(string $string_to_sanitise): string
@@ -109,5 +109,15 @@ class Validator
         }
 
         return $sanitizedContent;
+    }
+    public function sanitizePhoneNumber($phoneNumber): string
+    {
+        return filter_var($phoneNumber, FILTER_SANITIZE_NUMBER_INT);
+    }
+
+    public function validateRadioOption($option): bool
+    {
+
+        return !empty($option);
     }
 }

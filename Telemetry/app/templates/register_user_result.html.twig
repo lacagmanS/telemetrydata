@@ -1,26 +1,29 @@
 {% extends 'banner.html.twig' %}
+
 {% block content %}
     <div id="page-content-div">
         <h3>{{ page_heading_2 }}</h3>
         <h4>{{ sid_text }}{{ sid }}</h4>
 
+        {% if messagetouser is defined %}
+            <h4>Error:</h4>
+            <p>{{ messagetouser }}</p>
+            <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+        {% else %}
 
-        <h4>Cleaned text entries:</h4>
-        <p>Entered user name: {{ sanitised_username }}</p>
+            <h4>Cleaned text entries:</h4>
+            <p>Entered user name: {{ sanitised_username }}</p>
+            <p>Entered email: {{ sanitised_email }}</p>
 
-{#        <p>Entered password: {{ cleaned_password }}</p>#}
-        <p>Entered email: {{ sanitised_email }}</p>
+            <h4>Hashed password:</h4>
+            <p>NB The password was hashed with the BCrypt library</p>
+            <p>Hashed password: {{ hashed_password }}</p>
 
-        <h4>Hashed password:</h4>
-        <p>NB The password was hashed with the BCrypt library</p>
-        <p>Hashed password: {{ hashed_password }}</p>
+            <h4>Storage results:</h4>
+            <p>{{ storage_result }}</p>
 
-
-
-        <h4>Storage results:</h4>
-        <p>{{ storage_result }}</p>
-
-        <p class="curr_page"><a href="{{ landing_page2 }}">go to telemetry daya</a></p>
-        <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+            <p class="curr_page"><a href="{{ landing_page2 }}">go to telemetry daya</a></p>
+            <p class="curr_page"><a href="{{ landing_page }}">Home</a></p>
+        {% endif %}
     </div>
 {% endblock %}

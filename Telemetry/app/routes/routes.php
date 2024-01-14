@@ -16,4 +16,6 @@ require 'loginUser.php';
 require 'loginStatus.php';
 require 'registeruser.php';
 require 'TelemetryAttempt.php';
+require 'SendMessage.php';
+require 'SendMessageP.php';
 require 'TelemetryDetails.php';

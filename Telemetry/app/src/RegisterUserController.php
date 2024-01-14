@@ -16,6 +16,8 @@ class RegisterUserController
     public function createHtmlOutput(object $container, object $request, object $response): void
     {
         $tainted_parameters = $request->getParsedBody();
+        var_dump($tainted_parameters);
+
 
         $view = $container->get('view');
         $settings = $container->get('settings');
@@ -30,7 +32,11 @@ class RegisterUserController
 
         $database_connection_settings = $settings['doctrine_settings'];
         $doctrine_queries = $container->get('doctrineSqlQueries');
-
+        if ($tainted_parameters['username'] === '' || $tainted_parameters['password'] === '' || $tainted_parameters['email'] === ''){
+            $messagetouser= "null values inputted please return and input values";
+            $registeruser_view->createRegisterUserViewNullvalues($view, $response, $settings, $tainted_parameters, $messagetouser);
+        }
+        else{
         $cleaned_parameters = $registeruser_model->cleanupParameters($validator, $tainted_parameters);
 
 //        $results['encrypted'] = $registeruser_model->encrypt($libsodium_wrapper, $cleaned_parameters);
@@ -41,5 +47,6 @@ class RegisterUserController
         $storage_result = $registeruser_model->storeUserDetails($database_connection_settings, $doctrine_queries, $cleaned_parameters, $results['hashed_password']);
 
         $registeruser_view->createRegisterUserView($view, $response, $settings, $tainted_parameters, $cleaned_parameters, $results, $storage_result);
+}
     }
 }

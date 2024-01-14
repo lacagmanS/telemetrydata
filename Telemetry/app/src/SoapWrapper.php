@@ -25,8 +25,8 @@ class SoapWrapper
     }
     public function performSoapCall($soap_client_handle, $webservice_function, $webservice_call_parameters)
     {
-
-
+        var_dump($webservice_function);
+        var_dump($webservice_call_parameters);
 
         return $soap_client_handle->__soapCall($webservice_function, $webservice_call_parameters ) ;
     }
