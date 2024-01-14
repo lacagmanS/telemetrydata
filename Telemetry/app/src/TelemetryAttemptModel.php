@@ -142,17 +142,17 @@ class TelemetryAttemptModel
     {
         $statusArray = [];
 
-        // Split the message by space to get individual key-value pairs
+
         $keyValuePairs = explode(' ', $messageDetails);
 
-        // Define the keys to check for 'not given'
+
         $keys = ['switch1', 'switch2', 'switch3', 'switch4', 'fan', 'keypad', 'temperature'];
 
-        // Initialize a flag to check if all keys are 'not given'
+
         $allNotGiven = true;
 
         foreach ($keyValuePairs as $pair) {
-            // Split each key-value pair by '='
+
             $pairParts = explode('=', $pair);
 
             // Check if the pair is valid
